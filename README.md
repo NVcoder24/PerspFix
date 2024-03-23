@@ -1,7 +1,7 @@
 # PerspFix
 fixes perspective idk<br>
 # HowToUse
-drag and drop image file to exe<br>
+open exe with drag and droping image file to it<br>
 move points with LMB<br>
 move image with RMB<br>
 zoom with Mouse Wheel<br>
