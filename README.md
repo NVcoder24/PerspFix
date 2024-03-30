@@ -9,5 +9,5 @@ press q to get position to default<br>
 press s to save result to "PerspFixed.png"<br>
 press Escape to exit<br>
 # Minimal CPU requirements
-it is appears that this program eats cpu like nothin<br>
+it is appears that this program eats cpus like nothin<br>
 minimum cpu series is Intel Xeon 5th gen line of cpus
