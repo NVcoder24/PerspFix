@@ -3,12 +3,13 @@ import numpy as np
 import math
 import sys
 
-try:
+# this shi can hide games windows - too bad
+"""try:
     import win32gui, win32con
     the_program_to_hide = win32gui.GetForegroundWindow()
     win32gui.ShowWindow(the_program_to_hide , win32con.SW_HIDE)
 except:
-    print("con close err")
+    print("con close err")"""
 
 lbtn = False
 rbtn = False
