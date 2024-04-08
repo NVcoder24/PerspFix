@@ -2,9 +2,11 @@ import cv2
 import numpy as np
 import math
 import sys
+import time
 
-# this shi can hide games windows - too bad
-"""try:
+"""
+nightmare! do not use! too bad!
+try:
     import win32gui, win32con
     the_program_to_hide = win32gui.GetForegroundWindow()
     win32gui.ShowWindow(the_program_to_hide , win32con.SW_HIDE)
@@ -19,6 +21,31 @@ img = None
 
 max_w = 800
 max_h = 800
+
+result_w = 800
+result_h = 800
+have_newpts2 = False
+
+try:
+    if int(sys.argv[2]) == 1:
+        have_newpts2 = True
+        """trap_top = 990
+        trap_bottom = 910
+        trap_h = 870"""
+        trap_top = int(sys.argv[3])
+        trap_bottom = int(sys.argv[4])
+        trap_h = int(sys.argv[5])
+        if trap_top > trap_bottom:
+            newpts2 = np.float32([[0, 0], [trap_top, 0],
+                                [(trap_top - trap_bottom) / 2, max_h], [(trap_top - trap_bottom) / 2 + trap_bottom, max_h]])
+            result_w = trap_top
+        else:
+            newpts2 = np.float32([[(trap_bottom - trap_top) / 2, 0], [(trap_bottom - trap_top) / 2 + trap_top, 0],
+                                [0, trap_h], [trap_bottom, trap_h]])
+            result_w = trap_bottom
+        result_h = trap_h
+except Exception as e:
+    print("no trapezoid")
 
 move_x = 0
 move_y = 0
@@ -166,9 +193,11 @@ while True:
                        points[2], points[3]])
     pts2 = np.float32([[0, 0], [max_w, 0],
                        [0, max_h], [max_w, max_h]])
+    if have_newpts2:
+        pts2 = newpts2
 
     matrix = cv2.getPerspectiveTransform(pts1, pts2)
-    result = cv2.warpPerspective(imgorig, matrix, (max_w, max_h))
+    result = cv2.warpPerspective(imgorig, matrix, (result_w, result_h))
 
     cv2.imshow('PerspFix', canvas)
     cv2.imshow('PerspFix Result', result)
