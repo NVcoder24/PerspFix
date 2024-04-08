@@ -124,7 +124,7 @@ class MainWindow(QMainWindow):
     def btn_pressed(self):
         try:
             DETACHED_PROCESS = 0x00000008
-            results = subprocess.Popen(['main.exe', str(img_path), str(1), str(self.spinBox.value()), str(self.spinBox_2.value()), str(self.spinBox_3.value())],
+            results = subprocess.Popen(['main.exe', str(img_path), str(1), str(self.spinBox.value()), str(self.spinBox_3.value()), str(self.spinBox_2.value())],
                     close_fds=True, creationflags=DETACHED_PROCESS)
             sys.exit()
         except Exception as e:
