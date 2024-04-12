@@ -93,15 +93,15 @@ class MainWindow(QMainWindow):
         self.label_2.setText(f"Image path: {img_path}")
 
         self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QRect(120, 220, 141, 21))
+        self.pushButton.setGeometry(QRect(10, 220, 101, 21))
         self.pushButton.setText("Launch")
 
         self.comboBox = QComboBox(self.centralwidget)
-        self.comboBox.setGeometry(QRect(10, 220, 101, 21))
+        self.comboBox.setGeometry(QRect(120, 220, 141, 21))
         self.comboBox.addItems([""] + [ i["name"] for i in presets ])
 
         self.label_3 = QLabel(self.centralwidget)
-        self.label_3.setGeometry(QRect(10, 200, 101, 21))
+        self.label_3.setGeometry(QRect(120, 200, 101, 21))
         self.label_3.setText(f"Set preset:")
 
         self.spinBox.valueChanged.connect(self.sb1_changed)
