@@ -4,15 +4,6 @@ import math
 import sys
 import time
 
-"""
-nightmare! do not use! too bad!
-try:
-    import win32gui, win32con
-    the_program_to_hide = win32gui.GetForegroundWindow()
-    win32gui.ShowWindow(the_program_to_hide , win32con.SW_HIDE)
-except:
-    print("con close err")"""
-
 lbtn = False
 rbtn = False
 zoom = 1
@@ -37,7 +28,7 @@ try:
         trap_h = int(sys.argv[5])
         if trap_top > trap_bottom:
             newpts2 = np.float32([[0, 0], [trap_top, 0],
-                                [(trap_top - trap_bottom) / 2, max_h], [(trap_top - trap_bottom) / 2 + trap_bottom, max_h]])
+                                [(trap_top - trap_bottom) / 2, trap_h], [(trap_top - trap_bottom) / 2 + trap_bottom, trap_h]])
             result_w = trap_top
         else:
             newpts2 = np.float32([[(trap_bottom - trap_top) / 2, 0], [(trap_bottom - trap_top) / 2 + trap_top, 0],
@@ -102,10 +93,10 @@ def ui_event(event, x, y, flags, params):
         rbtn = False
 
     if event == cv2.EVENT_MOUSEWHEEL:
-        if flags > 0 and zoom < 4:
+        if flags > 0 and zoom < 6:
             zoom += .5
-        if flags < 0 and zoom > .5:
-            zoom -= .5
+        if flags < 0 and zoom > .2:
+            zoom -= .2
 
     if event == cv2.EVENT_MOUSEMOVE:
         delta_x = 0
@@ -198,6 +189,7 @@ while True:
 
     matrix = cv2.getPerspectiveTransform(pts1, pts2)
     result = cv2.warpPerspective(imgorig, matrix, (result_w, result_h))
+    print(pts2, result_w, result_h)
 
     cv2.imshow('PerspFix', canvas)
     cv2.imshow('PerspFix Result', result)
